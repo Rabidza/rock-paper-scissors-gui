@@ -2,101 +2,22 @@
   <html>
   <head>
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body width="60%">
+    <h1 class="center">Rock Paper Sciccors</h1>
     <div class="left">
-      <h1>Rock Paper Sciccors</h1>
       <h2>Pick your weapon:</h2>
       <button id='rock'>Rock</button>
       <button id='paper'>Paper</button>
       <button id='scissors'>Scissors</button>
-
       <div id="results"></div>
     </div>
-    <!-- <div id="score" class="right">
+    <div id="score" class="right">
       <h1>Scoreboard</h1>
-    </div> -->
+    </div>
 
-    <script>
-      const GAMEOVER = 5;
-      let playerScore = 0;
-      let computerScore = 0;
+      <script type="text/javascript" src="game.js"></script>
 
-      function computerPlay() {
-        const choices = ['Rock', 'Paper', 'Scissors'];
-        let random = Math.floor(Math.random() * choices.length);
-        computerSelection = choices[random];
-        return computerSelection;
-      }
-
-      function playRound(playerSelection, computerSelection){
-      let player = playerSelection.toString().toLowerCase();
-      let computer = computerSelection.toString().toLowerCase();
-        if (player == computer){
-          console.log("You are tied!");
-          return "You are tied!";
-        }
-        else if ((player === 'rock' && computer === 'scissors') ||
-                (player === 'paper' && computer === 'rock') ||
-                (player === 'scissors' && computer === 'paper')){
-                  console.log("You win! " + playerSelection + " beats " + computerSelection)
-                  return "You win! " + playerSelection + " beats " + computerSelection;
-        }
-        else if ((player === 'rock' && computer === 'paper') ||
-                (player === 'paper' && computer === 'scissors') ||
-                (player === 'scissors' && computer === 'rock') ) {
-                  console.log("You lose! " + computerSelection + " beats " + playerSelection);
-                  return "You lose! " + computerSelection + " beats " + playerSelection;
-        }
-      }
-
-      function game(){
-        let rounds = 5;
-        let playerScore = 0;
-        let computerScore = 0;
-        while (rounds > 0){
-          let playerChoice = prompt("Enter rock, paper or scissors").toLowerCase();
-          while(playerChoice != 'rock' && playerChoice != 'scissors' && playerChoice != 'paper'){
-          playerChoice = prompt("Please try again! Enter 'Rock', 'Paper' or 'Scissors'")
-        }
-        let computerChoice = computerPlay();
-        round = playRound(playerChoice, computerChoice);
-        if (round.indexOf("tied") !== -1){
-          // Do nothing
-        }
-        else if(round.indexOf("win") !== -1){
-          playerScore += 1;
-        }
-        else{
-          computerScore += 1;
-        }
-        rounds--;
-        }
-        if (playerScore > computerScore){
-          return "You win! " + playerScore + " to " + computerScore;
-        }
-        else if (playerScore == computerScore)
-        {
-          return "You are tied!";
-        }
-        else{
-          return "You Lose! " + computerScore + " to " + playerScore;
-        }
-      }
-
-      const buttons = document.querySelectorAll("button");
-      buttons.forEach(function(btn){
-        btn.addEventListener("click", function(e){
-          let playerSelection = e.target.id;
-          let computerSelection = computerPlay();
-          resultDiv.textContent = playRound(playerSelection, computerSelection);
-        });
-      });
-
-      const results = document.querySelector("#results");
-      const resultDiv = document.createElement("div");      
-      results.append(resultDiv);
-
-    </script>
   </body>
 </html>
